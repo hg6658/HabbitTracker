@@ -7,7 +7,7 @@
 
 #image{
     height: 120%;
-    background: url('../Img/loginSignup.png');
+    background: url('/Img/loginSignup.png');
     background-position: center 0;
     border-right: 5px solid black;
     background-repeat: no-repeat;
