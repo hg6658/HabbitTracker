@@ -104,15 +104,18 @@ $('#signform1Example23 , #form1Example33').on('keyup',function(e){
 $('#loginSection').submit(function(e){
     if($('#form1Example13').val()=='' || $('#form1Example23').val()=='' || grecaptcha.getResponse(0).length==0){
         e.preventDefault();
+    }else{
+        $('#loginFromSubmit').attr('disabled',true);
     }
     
-    $('#loginFromSubmit').attr('disabled',true);
+    
 })
 
 
 $('#signinSection').submit(function(e){
     if($('#signform1Example13').val()=='' || $('#form1Example03').val()=='' || grecaptcha.getResponse(1).length==0 ||($('#signform1Example23').val()!= $('#form1Example33').val())){
         e.preventDefault();
+    }else{
+        $('#signFormSubmit').attr('disabled',true);
     }
-    $('#signFormSubmit').attr('disabled',true);
 })
