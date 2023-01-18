@@ -45,6 +45,12 @@ var changePage = function(){
     }else if(currentHash=='#calender-page'){
         $('#calender-page').removeClass('hide-page');
         let user_id = $('#layout-main').attr('user_id');
+        $('#calender-page').append(`<div class="loadingScreen">
+        <div class="b b1"></div>
+        <div class="b b2"></div>
+        <div class="b b3"></div>
+        <div class="b b4"></div>
+      </div>`);
         $.ajax({
             url: `./calender/${user_id}`,
             type: "GET",
