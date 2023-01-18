@@ -62,7 +62,7 @@ $(document).ready(function() {
     }
     $("#forgotForm").on('submit', (function(e) {
       e.preventDefault();
-      $('#verficationButton').attr('disabled',true);
+      $('#verfication').attr('disabled',true);
       $.ajax({
         url: $(this).attr('action'),
         type: "POST",
@@ -71,7 +71,7 @@ $(document).ready(function() {
         cache: false,
         processData: false,
         success: function(response) {
-            $('#verficationButton').attr('disabled',false);
+            $('#verfication').attr('disabled',false);
            if(response.code==200){
             $('#verifyForm').hide();
             $('#linksendSuccess').show();
@@ -89,51 +89,30 @@ $(document).ready(function() {
     }));
   });
 
-
-/*  $(document).ready(function() {
-    $("#loginSection").on('submit', (function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: $(this).attr('action'),
-        type: "POST",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(data) {
-            console.log(data);
-        },
-
-        error: function(response){
-            console.log(response)
-        }
-     });
-    }));
-  });
-
-  */
-
-  
-
 $('#signform1Example23 , #form1Example33').on('keyup',function(e){
     if($('#signform1Example23').val()== $('#form1Example33').val()){
         $('#isMatching').html('<b>Password are matching</b>');
-        $('#isMatching').css('color','green');
-        if($('#signform1Example13').val()!='' && $('#form1Example03').val()!=''){
-            $('#signFormSubmit').attr('disabled',false);
-        }    
+        $('#isMatching').css('color','green');    
     }else{
         $('#isMatching').html('<b>Password are not matching</b>');
         $('#isMatching').css('color','red');
-        $('#signFormSubmit').attr('disabled',true);
         
     }
-})  
+})
 
-$('#signform1Example13 , #form1Example03').on('keyup',function(e){
-    if($('#signform1Example13').val()!='' && $('#form1Example03').val()!=''){
-        if($('#signform1Example23').val()== $('#form1Example33').val()){
-            $('#signFormSubmit').attr('disabled',false);
-        }
+
+$('#loginSection').submit(function(e){
+    if($('#form1Example13').val()=='' || $('#form1Example23').val()=='' || grecaptcha.getResponse(0).length==0){
+        e.preventDefault();
     }
+    
+    $('#loginFromSubmit').attr('disabled',true);
+})
+
+
+$('#signinSection').submit(function(e){
+    if($('#signform1Example13').val()=='' || $('#form1Example03').val()=='' || grecaptcha.getResponse(1).length==0 ||($('#signform1Example23').val()!= $('#form1Example33').val())){
+        e.preventDefault();
+    }
+    $('#signFormSubmit').attr('disabled',true);
 })

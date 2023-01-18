@@ -32,9 +32,9 @@
                           <a  id="openVerification" href="#">Forgot password?</a>
                         </div>
                         
-                        <div class="g-recaptcha" style="margin-bottom: 8px;" data-sitekey="6LccdgYkAAAAABcFJURYqOyPyxy_kNM56om5BWmv"></div>
+                        <div class="g-recaptcha"  id="captcha1" widget_id="1" style="margin-bottom: 8px;" data-sitekey="6LccdgYkAAAAABcFJURYqOyPyxy_kNM56om5BWmv"></div>
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                        <button type="submit" id="loginFromSubmit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
 
                         <div id="openSignUp" class="text-center">
@@ -60,7 +60,7 @@
                       </form>
                     </div>
                     <div id="signForm" class="col-md-7 col-lg-8 col-xl-8 offset-xl-1">
-                      <form action="/users/sign-up/password" method="post" enctype="multipart/form-data">
+                      <form id="signinSection" action="/users/sign-up/password" method="post" enctype="multipart/form-data">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="form1Example03" name="userName" class="form-control form-control-lg" />
@@ -86,8 +86,8 @@
 
                         </div>
                         <!-- Submit button -->
-                        <div class="g-recaptcha" style="margin-bottom: 8px;" data-sitekey="6LccdgYkAAAAABcFJURYqOyPyxy_kNM56om5BWmv"></div>
-                        <button type="submit" id="signFormSubmit" class="btn btn-primary btn-lg btn-block" disabled>Sign Up</button>
+                        <div class="g-recaptcha" id="captcha2" widget_id="2" style="margin-bottom: 8px;" data-sitekey="6LccdgYkAAAAABcFJURYqOyPyxy_kNM56om5BWmv"></div>
+                        <button type="submit" id="signFormSubmit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
                         
                         <div id="openLogin" class="mx-5">
                             <a href="#">Already a Member? Click Here to Login</a>
