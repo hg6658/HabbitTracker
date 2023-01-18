@@ -1,8 +1,18 @@
 var getTasksHomePage = function(){
+    $('.myTasks-content').append(`<div class="loadingScreen">
+    <div class="b b1"></div>
+    <div class="b b2"></div>
+    <div class="b b3"></div>
+    <div class="b b4"></div>
+  </div>`);
+  $('.myTasks-content').css('display','flex');
+  $('.myTasks-content').css('align-items','center')
+  $('.myTasks-content').css('justify-content','center');
     $.ajax({
         url: `./getasks`,
         type: "GET",
         success: function(response) {
+            $('.myTasks-content').css('display','grid');
             if(response.code==200 && response.tasks.length>0){
                 $('.myTasks-content').empty();
                 for(let task of response.tasks){
