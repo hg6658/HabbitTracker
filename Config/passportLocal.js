@@ -1,7 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
 var User = require('../Models/user');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const request = require('request');
 const saltRounds = 10;
 
