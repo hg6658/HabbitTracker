@@ -42,6 +42,24 @@ class weekTaskTile{
         let self = this;
         let user_id = $('#layout-main').attr('user_id');
         let taskId = $(self.taskTile).attr('id');
+        $(self.taskTile).find('.monthGrid').empty().append(`<div class="loadingScreen">
+        <div class="b b1"></div>
+        <div class="b b2"></div>
+        <div class="b b3"></div>
+        <div class="b b4"></div>
+      </div>`);
+      $(self.taskTile).find('.successChart').empty().append(`<div class="loadingScreen">
+      <div class="b b1"></div>
+      <div class="b b2"></div>
+      <div class="b b3"></div>
+      <div class="b b4"></div>
+    </div>`);
+    $(self.taskTile).find('.monthTab').empty().append(`<div class="loadingScreen">
+    <div class="b b1"></div>
+    <div class="b b2"></div>
+    <div class="b b3"></div>
+    <div class="b b4"></div>
+  </div>`);
         $.ajax({
             url: `./calender/show-month-history/${user_id}/${taskId}`,
             type: "GET",
@@ -115,8 +133,10 @@ class weekTaskTile{
             url: `/calender/getSuggestions/${searchString}`,
             type: "GET",
             success: function(response){
+                $(self.taskTile).find('.monthTab').empty().append(`<h4>Some search results you might like:</h4>
+                <ul>
+                </ul>`);
                 if(response.code==200){
-                    $(self.taskTile).find('.monthTab ul').empty();
                     for(let result of response.results){
                         let listItem = $(`<li><a href="${result.link}">${result.htmlTitle}</li>`);
                         $(self.taskTile).find('.monthTab ul').append(listItem);
