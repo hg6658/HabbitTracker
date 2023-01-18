@@ -56,3 +56,5 @@ app.listen(8000,(err)=>{
     console.log('Server started at port 8000');
 });
 
+
+module.exports = app;
