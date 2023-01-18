@@ -6,7 +6,7 @@ const User = require('../Models/user');
 passport.use(new GitHubStrategy({
     clientID: process.env.githubSignin_clientID,
     clientSecret: process.env.githubSignin_clientSecret,
-    callbackURL: "http://localhost:8000/users/auth/github/callback",
+    callbackURL: "https://habbit-tracker-three.vercel.app/users/auth/github/callback",
   },
   function(accessToken, refreshToken, profile, done){
     // find a user

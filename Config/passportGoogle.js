@@ -9,7 +9,7 @@ const User = require('../Models/user');
 passport.use(new googleStrategy({
         clientID: process.env.googleSignin_clientID,
         clientSecret: process.env.googleSignin_clientSecret,
-        callbackURL: "http://localhost:8000/users/auth/google/callback",
+        callbackURL: "https://habbit-tracker-three.vercel.app/users/auth/google/callback",
     },
 
     function(accessToken, refreshToken, profile, done){
