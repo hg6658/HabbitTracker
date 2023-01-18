@@ -1,0 +1,13 @@
+const express = require('express');
+const router = express.Router();
+const homeController  = require('../Controllers/home');
+const passport  = require('passport');
+const user = require('../Controllers/user');
+router.get('/',user.checkAuth,homeController.main);
+router.post('/addHabbit',user.checkAuth,homeController.addHabbit);
+router.get('/getasks',user.checkAuth,homeController.getTasks);
+router.use('/calender',require('./calender'));
+router.get('/delete/:taskId',user.checkAuth,homeController.deleteTask);
+router.get('/toggle-task/:taskId/:boolVal',user.checkAuth,homeController.toggleTask);
+router.use('/users/',require('./users'));
+module.exports = router;

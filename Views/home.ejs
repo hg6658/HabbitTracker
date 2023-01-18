@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="/Css/home.css"></link> 
+<div id="layout-main" user_id="<%= user_id %>">
+<%- include('navbar') -%>  
+</div>
+<div id="home-page">  
+<div id="create-habbit">
+    <div class="card-outer-class1">
+        <div class="card-inner">
+            <div class="captions">
+                <h2>Add a Habbit</h2>
+                <h5>Fill out a form to add a habbit</h5>
+            </div>
+            <form method="post" action="/addHabbit" enctype="multipart/form-data">
+                <div id="habbitNameField">
+                <label for="habbitName"><div id="outerNameLabel"><div class="tiler" id="habbitNameLabel">Habbit Name</div></div></label>
+                <input type="text" id="habbitName" name="habbitName" placeholder="Enter Habbit"/>
+                </div>
+                <div id="habbitDescriptionField">
+                    <label for="habbitDescription"><div id="outerDescriptionLabel"><div class="tiler" id="habbitDescriptionLabel">Habbit Description</div></div></label>
+                    <textarea type="text" id="habbitDescription" name="habbitDescription" placeholder="Enter Habbit Description"></textarea>
+                </div>
+                <div id="habbitTypeField">
+                    <label for="habbitType"><div id="outerTypeLabel"><div class="tiler" id="habbitTypeLabel">Habbit Category</div></div></label>
+                    <select name="habbitType" id="habbitType" placeholder="Enter Habbit Type">
+                        <option value="Health">Health</option>
+                        <option value="Work">Work</option>
+                    </select>
+                </div>
+                <div id="daysField">
+                <div id="frequency-label"><p class="tiler">Frequency</p></div>    
+                <div id="dayBox">
+                    <input type="checkbox" id="Sunday" name="Sunday">
+                    <label for="Sunday">
+                        <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">S</div></div>
+                    </label>
+                 </div>
+                <div id="dayBox">
+                   <input type="checkbox" id="Monday" name="Monday">
+                   <label for="Monday">
+                       <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">M</div></div>
+                   </label>
+                </div>
+                <div id="dayBox">
+                    <input type="checkbox" id="Tuesday" name="Tuesday">
+                    <label for="Tuesday">
+                        <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">T</div></div>
+                    </label>
+                </div>
+                <div id="dayBox">
+                    <input type="checkbox" id="Wednesday" name="Wednesday">
+                    <label for="Wednesday">
+                        <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">W</div></div>
+                    </label>
+                </div>
+                <div id="dayBox">
+                    <input type="checkbox" id="Thursday" name="Thursday">
+                    <label for="Thursday">
+                        <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">T</div></div>
+                    </label>
+                 </div>
+                <div id="dayBox">
+                   <input type="checkbox" id="Friday" name="Friday">
+                   <label for="Friday">
+                       <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">F</div></div>
+                   </label>
+                </div>
+                <div id="dayBox">
+                    <input type="checkbox" id="Saturday" name="Saturday">
+                    <label for="Saturday">
+                        <div id="outerDayLabel"><div class="tiler" id="innerDayLabel">S</div></div>
+                    </label>
+                 </div> 
+                </div> 
+               <div id="timeBox">
+                <label for="timeRemind">
+                    <div id="outerTimeLabel"><div class="tiler">
+                        Set time to Reminder</div></div>
+                </label>
+                <input id="timeRemind" name="timeRemind" type="time">
+               </div> 
+               <button id="submitHabbit" class="tiler" type="Submit">+ AddHabbit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div id="myTasks">
+    <div id="myTasks-heading" style="color: white;">
+        <div id="myTasks-mainHeading">Today's Tasks</div>
+        <div id="myTasks-showButton"><button>Show Tasks</button></div>
+    </div>
+    <div class="myTasks-content">
+    </div>
+</div>
+</div> 
+<div id="calender-page">
+    <h1>Week's History</h1>
+</div>     
+<div id="user-page">
+    <h1>User Page</h1>
+    <div id="edit-photo">
+    <div id="user-photo-section">
+        <div id="photo-upload"><input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label></div>
+        <div id="user-photo"></div>
+    </div>
+    <div id="save-button"><button>Save</button></div>
+    </div>
+    <a href='/users/logout'><button>Logout</button></a>
+    <div id="change-password">
+         <h3>Change Password</h3>
+         <form method="post" action="/changePasswordinside" enctype="multipart/form-data">
+            <div id="passwordField" class="margin-x15y30">
+            <label for="password"><div id="passwordLabel"><div class="tiler-purple" id="passwordLabel">Password</div></div></label>
+            <input type="password" id="password" name="password" placeholder="Enter Password"/>
+            </div>
+            <div id="repasswordField" class="margin-x15y30">
+                <label for="repassword"><div id="repasswordLabel"><div class="tiler-purple" id="repasswordLabel">Re Enter Password</div></div></label>
+                <input type="password" id="repassword" name="repassword" placeholder="Re Enter Password"/>
+            </div>
+            <div id="isMatching" class="margin-x15y30"></div>
+            <button id="submitPassword" class="tiler-purple margin-x15y30" type="Submit">Change Password</button>
+        </form>
+    </div>
+</div>
+<div id="notifications-page">
+    <h1>Notifications Page</h1>
+</div>
