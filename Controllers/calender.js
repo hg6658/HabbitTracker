@@ -8,7 +8,6 @@ var serveCalendarpage = async function(req,res){
         let today = new Date();
         let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', "Friday", 'Saturday'];
         let todayDate = today.getDate()-1;
-        console.log(todayDate);
         let todayDay = days[today.getDay()];
         let startDate = Math.max(0,todayDate-today.getDay());
         let dates = [];
