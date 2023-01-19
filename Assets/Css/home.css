@@ -616,7 +616,6 @@ a button{
 }
 
 
-
 #user-photo{
   border-radius: 50%;
   height: 100%;
@@ -685,6 +684,9 @@ a button{
   animation: ro 2s infinite;
 }
 
+.display-flex{
+  display: flex;
+}
 .loadingScreen .b1 {
   border-color: #4A69BD;
   width: 120px;
@@ -733,7 +735,7 @@ a button{
 
  @media only screen and (max-width: 1080px) {
   
-  #myTasks-content{
+  .myTasks-content{
     grid-template-columns: 1fr 1fr;
 
   }
@@ -749,7 +751,7 @@ a button{
 }
 
 @media only screen and (max-width: 800px) {
-  #myTasks-content{
+  .myTasks-content{
     grid-template-columns: 1fr;
   }
   .daytaskTiles{

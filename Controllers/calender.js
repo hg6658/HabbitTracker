@@ -8,6 +8,7 @@ var serveCalendarpage = async function(req,res){
         let today = new Date();
         let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', "Friday", 'Saturday'];
         let todayDate = today.getDate()-1;
+        console.log(todayDate);
         let todayDay = days[today.getDay()];
         let startDate = Math.max(0,todayDate-today.getDay());
         let dates = [];
@@ -78,10 +79,9 @@ var serveCalendarpage = async function(req,res){
             data: user
         });
        }catch(err){
-        console.log(err);
         req.status(500).json({
             code: 500,
-            message: 'Internal server error'
+            message: err.message
         })
        }
     }else{
