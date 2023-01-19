@@ -36,7 +36,6 @@ var changePage = function(){
         $('#home-page').removeClass('hide-page');
         $('#myTasks-heading').find('button').on('click', function(){
             $('.myTasks-content').empty().toggleClass('display-grid');
-            
             getTasksHomePage();
         })    
     }else if(currentHash=='#calender-page'){

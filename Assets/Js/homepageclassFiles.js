@@ -25,7 +25,6 @@ class taskTile{
                 url: $(self.deleteButton).attr('delete'),
                 type: "GET",
                 success: function(response) {
-                    console.log(response);
                     if(response.code==200){
                         $('#'+$(self.deleteButton).attr('taskid')).remove();
                     }

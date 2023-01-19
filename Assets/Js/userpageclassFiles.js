@@ -61,7 +61,6 @@ class userPage{
                     if(response.code==200){
                         alert('Photo Changed...');
                     }else{
-                        console.log(response.message);
                         alert('Due to some errors photo was not changed please try again..');
                     } 
                         }

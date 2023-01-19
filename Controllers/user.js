@@ -34,7 +34,6 @@ var captchaCheck = function(req,res,next){
         next();
     }); 
 }
-//console.log(new Date());
 
 
 var logout = function(req, res, next) {
@@ -62,7 +61,6 @@ var createSession = function(req, res, next) {
           if(error){
             console.log(error);
           }
-          console.log(user);
           req.login(user, function(err) {
             if (err) { return next(err); }
             res.redirect('/');

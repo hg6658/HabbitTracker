@@ -68,7 +68,6 @@ var addHabbit = async function(req,res){
           }
           i++;
         }
-        console.log(req.body);
         let task = {
           'habbitName':req.body.habbitName,
           'timeRemind': req.body.timeRemind,
@@ -136,7 +135,6 @@ var toggleTask = async function(req, res){
     })
     return;
   }catch(err){
-    console.log(err);
     res.status(200).json({
       code: 404
     })
