@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const request = require('request');
 var nodeMailer = require('../Config/nodemailer');
+const mongoose = require('mongoose');
 var TokenGenerator = require( 'token-generator' )({
   salt: 'blah something',
   timestampMap: new Date().getTime().toString().substring(0,10), // 10 chars array for obfuscation proposes
@@ -54,12 +55,14 @@ var createSession = function(req, res, next) {
           'userName':req.body.userName,
           'email': req.body.email,
           'password': hash,
-          'tasks': []
+          'tasks': [],
+          'profilePhoto':'null'
         }
         User.create(userprocess,function(error,user){
           if(error){
             console.log(error);
           }
+          console.log(user);
           req.login(user, function(err) {
             if (err) { return next(err); }
             res.redirect('/');
@@ -235,6 +238,42 @@ var changePassword = function(req,res){
     })
   });
 }
+
+var changePasswordinside = async function(req,res){
+  try{
+    const hash = await bcrypt.hash(req.body['password-changePassword'], saltRounds);
+    const user = await User.findOne({_id:mongoose.Types.ObjectId(req.params.userId)});
+    user.password = hash;
+    await user.save();
+    res.status(200).json({
+      code: 200,
+      message: "Password Changed..."
+    })
+  }catch(err){
+    res.status(200).json({
+      code: 500,
+      message: err.message
+    })
+  }
+}
+
+var changePhoto= async function(req,res){
+  try{
+    const user = await User.findOne({_id:mongoose.Types.ObjectId(req.params.userId)});
+    user.profilePhoto = req.file.filename;
+    await user.save();
+    res.status(200).json({
+      code: 200,
+      message:"Photo Changed.."
+    })
+  }catch(err){
+    res.status(200).json({
+      code: 500,
+      message: err.message
+    })
+  }
+}
+
 module.exports ={
     logIn,
     logout,
@@ -243,5 +282,7 @@ module.exports ={
     forgotPassword,
     resetPassword,
     changePassword,
-    captchaCheck
+    captchaCheck,
+    changePasswordinside,
+    changePhoto
 }

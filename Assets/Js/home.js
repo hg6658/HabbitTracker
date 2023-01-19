@@ -1,3 +1,7 @@
+var generateNotifications = function(){
+
+}
+
 var getTasksHomePage = function(){
     $('.myTasks-content').append(`<div class="loadingScreen">
     <div class="b b1"></div>
@@ -71,6 +75,7 @@ var changePage = function(){
          });
     }else if(currentHash=='#user-page'){
         $('#user-page').removeClass('hide-page');
+        new userPage();
     }else if(currentHash == '#notifications-page'){
         $('#notifications-page').removeClass('hide-page');
     }

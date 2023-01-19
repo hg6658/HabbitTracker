@@ -45,6 +45,9 @@ router.get('/auth/github/callback', passport.authenticate('github', {failureRedi
   res.redirect('/');
 });
 
+router.post('/changePassword-inside/:userId',User.uploadDetails,userController.changePasswordinside);
+router.post('/change-photo/:userId',User.uploadPhotos,userController.changePhoto);
+
 
 
 module.exports = router;

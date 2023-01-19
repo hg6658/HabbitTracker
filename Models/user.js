@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const path = require('path');
 const multer = require('multer');
 
 const { Schema } = require("mongoose");
@@ -88,13 +88,29 @@ const userSchema = new mongoose.Schema({
                 timestamps:true
             })
         }
-    ]
+    ],
+    profilePhoto: {
+        type: String,
+        required: false
+    }
 }, {
     timestamps: true
 });
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      const fullPath = path.join(__dirname, '../Assets/Uploads');  
+      cb(null, fullPath)
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix+'.jpg')
+    }
+  })
 
 userSchema.statics.uploadDetails = multer().none();
+userSchema.statics.uploadPhotos = multer({storage: storage}).single('profile-photo');
+
 
 const User = mongoose.model('User', userSchema);
 

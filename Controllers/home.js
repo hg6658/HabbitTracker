@@ -1,13 +1,19 @@
 const multer  = require('multer');
 //const Task = require('../Models/task');
 const User = require('../Models/user');
-
+const path = require('path');
 const mongoose = require('mongoose');
 var main = async function(req,res){
-
-      res.render('home',{
+      
+      const signedUser = {
         user_id: req.user.id
-      });
+      }
+      if(req.user.profilePhoto=='null'){
+        signedUser.profilePhoto = '/Uploads/sample_photo.jpg';
+      }else{
+        signedUser.profilePhoto =  path.join('/Uploads/',req.user.profilePhoto);
+      }
+      res.render('home',signedUser);
 }
 
 var getTasks = async function(req,res){
@@ -17,8 +23,6 @@ var getTasks = async function(req,res){
     let todayDate = today.getDate()-1;
     let todayDay = days[today.getDay()];
     let tasksDay= "tasks."+todayDay;
-    //console.log(todayDate+":"+todayDay+":"+tasksDay);
-    //console.log(req.user.id);
     let user = await User.aggregate([
       {$match: { "_id": mongoose.Types.ObjectId(req.user.id) }},
       { $unwind : "$tasks"},

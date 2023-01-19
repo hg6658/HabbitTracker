@@ -98,31 +98,53 @@
 </div>     
 <div id="user-page">
     <h1>User Page</h1>
-    <div id="edit-photo">
-    <div id="user-photo-section">
-        <div id="photo-upload"><input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-            <label for="imageUpload"></label></div>
-        <div id="user-photo"></div>
-    </div>
-    <div id="save-button"><button>Save</button></div>
-    </div>
-    <a href='/users/logout'><button>Logout</button></a>
-    <div id="change-password">
-         <h3>Change Password</h3>
-         <form method="post" action="/changePasswordinside" enctype="multipart/form-data">
-            <div id="passwordField" class="margin-x15y30">
-            <label for="password"><div id="passwordLabel"><div class="tiler-purple" id="passwordLabel">Password</div></div></label>
-            <input type="password" id="password" name="password" placeholder="Enter Password"/>
+
+    <div class="card" style="max-width: 400px; margin: 60px auto; border-radius: 8px; border: 3px solid black;">
+        <div class="card-header" style="background: #4347F6; color:white; border-bottom: 3px solid black;">
+          Change Photo
+        </div>
+        <div class="card-body">
+            <form id="changePhoto" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; justify-content: space-around;">
+            <div id="user-photo-section" style="margin: 20px;">
+                <div id="photo-upload">
+                    <input type="file" id="imageUpload" name="profile-photo" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label></div>
+                <div id="user-photo"><Img src="<%= profilePhoto %>"></div>
             </div>
-            <div id="repasswordField" class="margin-x15y30">
-                <label for="repassword"><div id="repasswordLabel"><div class="tiler-purple" id="repasswordLabel">Re Enter Password</div></div></label>
-                <input type="password" id="repassword" name="repassword" placeholder="Re Enter Password"/>
-            </div>
-            <div id="isMatching" class="margin-x15y30"></div>
-            <button id="submitPassword" class="tiler-purple margin-x15y30" type="Submit">Change Password</button>
-        </form>
+
+            <button type="submit" class="btn btn-primary" style="margin: 20px;">Save</button>
+            </form>
+        </div>
     </div>
+    <a href='/users/logout'><button class="btn btn-primary">Logout</button></a>
+    <div class="card" style="max-width: 700px; margin: auto; border-radius: 8px;border: 3px solid black;">
+        <div class="card-header" style="background: #4347F6; color:white; border-bottom: 3px solid black;">
+          Change Password
+        </div>
+        <div class="card-body">
+            <form id="changePassword" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="password-changePassword">New Password</label>
+                  <input type="password" class="form-control" id="password-changePassword" name="password-changePassword" placeholder="Your new Password">
+                </div>
+                <div class="form-group">
+                  <label for="confirmpassword-changePassword">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirmpassword-changePassword" name="confirmpassword-changePassword" placeholder="Confirm password">
+                </div>
+                <div id="isbothMatching"></div>
+                <button type="submit" class="btn btn-primary" id="button-changePassword">Change Password</button>
+            </form>
+        </div>
+      </div>
 </div>
-<div id="notifications-page">
+<div id="notifications-page" style="min-height: 900px;">
     <h1>Notifications Page</h1>
+    <div class="card" id="noNotifications" style="max-width:800px; margin: 20px;">
+        <div class="card-header" style="background: #28a745; color: white; font-weight: bold;">
+          No Notifications
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">No notifications to display</h3>
+        </div>
+      </div>
 </div>

@@ -36,7 +36,8 @@ passport.use(strategy);
 passport.serializeUser(function(user, cb) {
       return cb(null, {
         email: user.email,
-        userName: user.userName
+        userName: user.userName,
+        profilePhoto: user.profilePhoto
       });
   });
   
