@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 var main = async function(req,res){
       
       const signedUser = {
-        user_id: req.user.id
+        user_id: req.user.id,
+        filepath: 'home'
       }
       if(req.user.profilePhoto=='null'){
         signedUser.profilePhoto = '/Uploads/sample_photo.jpg';

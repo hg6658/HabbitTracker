@@ -13,6 +13,7 @@ var TokenGenerator = require( 'token-generator' )({
 var logIn = function(req,res){
     res.render('auth',{
       message: req.flash('error'),
+      filepath: 'auth'
     });
 }
 var captchaCheck = function(req,res,next){
@@ -175,17 +176,22 @@ var resetPassword = function(req,res){
     token: req.params.tokenId
   },function(err,token){
     if(err){
-      res.render('session-expired');
+      res.render('session-expired',{
+        filepath: 'session-expired'
+      });
       return;
     }
     if(!token){
-      res.render('session-expired');
+      res.render('session-expired',{
+        filepath: 'session-expired'
+      });
       return;
     }
 
     res.render('reset-password',{
       userId: req.params.userId,
-      tokenId: req.params.tokenId
+      tokenId: req.params.tokenId,
+      filepath: 'reset-password'
     });
 
   })

@@ -4,6 +4,21 @@ class initiateNotifications{
     }
 
     initialize(){
+        let markTime  = new Date(Date.now()).setHours(0,0,0);
+        let obj = localStorage.getItem('notifications');
+        if(obj){
+        let newObj={};
+        obj = JSON.parse(obj);
+        for(let key of Object.keys(obj)){
+            if(obj[key].clearTime>markTime){
+                newObj[key]=obj[key];
+            }
+            localStorage.setItem('notifications',JSON.stringify(newObj));
+        }
+        }else{
+            let newObj={};
+            localStorage.setItem('notifications',JSON.stringify(newObj));
+        }
         $.ajax({
             url: '/notifications/getTasks',
             type:'GET',
@@ -36,6 +51,13 @@ class initiateNotification{
     }
 
     createNotification(task){
+        let obj = localStorage.getItem('notifications');
+        if(obj){
+            obj = JSON.parse(obj);
+        }
+        if(obj[task._id]){
+            return;
+        }
         $('#noNotifications').remove();
         alert('You have a notifications check your notifications');
         $('#notificationsBody').append(`<div class="card" id=${task._id} style="max-width:800px; margin: 20px;">
@@ -49,7 +71,16 @@ class initiateNotification{
         </div>
       </div>`);
        $(`#${task._id}`).find('button').on('click',function(e){
-        $(`#${task._id}`).remove();
+           $(`#${task._id}`).remove();
+           let obj = localStorage.getItem('notifications');
+           if(obj){
+            obj = JSON.parse(obj);
+           }
+           let id = String(task._id); 
+           obj[id]={
+                clearTime : new Date().getTime()
+           }
+           localStorage.setItem('notifications',JSON.stringify(obj));
        })
     }
 
