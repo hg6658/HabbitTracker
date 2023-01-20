@@ -6,6 +6,7 @@ const saltRounds = 10;
 const request = require('request');
 var nodeMailer = require('../Config/nodemailer');
 const mongoose = require('mongoose');
+const {gfs} = require('../Config/mongoose');
 var TokenGenerator = require( 'token-generator' )({
   salt: 'blah something',
   timestampMap: new Date().getTime().toString().substring(0,10), // 10 chars array for obfuscation proposes
@@ -264,13 +265,21 @@ var changePasswordinside = async function(req,res){
 var changePhoto= async function(req,res){
   try{
     const user = await User.findOne({_id:mongoose.Types.ObjectId(req.params.userId)});
-    user.profilePhoto = req.file.filename;
-    await user.save();
+    let uploadStream = await gfs.gridfsBucket.openUploadStream(req.file.originalname);
+    uploadStream.end(req.file.buffer);
+    uploadStream.on('finish', async function(file) {
+      console.log('File saved to MongoDB');
+      // Save a reference to the file in the user document
+      user.profilePhoto = file._id;
+      await user.save();
+    });
+
     res.status(200).json({
       code: 200,
       message:"Photo Changed.."
     })
   }catch(err){
+    console.log(err);
     res.status(200).json({
       code: 500,
       message: err.message

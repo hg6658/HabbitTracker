@@ -8,6 +8,7 @@ router.post('/addHabbit',user.checkAuth,homeController.addHabbit);
 router.get('/getasks',user.checkAuth,homeController.getTasks);
 router.get('/delete/:taskId',user.checkAuth,homeController.deleteTask);
 router.get('/toggle-task/:taskId/:boolVal',user.checkAuth,homeController.toggleTask);
+router.get('/Uploads/getprofilePhoto/:fileId',user.checkAuth,homeController.servePhoto);
 router.use('/calender',user.checkAuth,require('./calender'));
 router.use('/users',require('./users'));
 router.use('/notifications',user.checkAuth,require('./notifications'));

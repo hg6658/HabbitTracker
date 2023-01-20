@@ -3,6 +3,7 @@ const multer  = require('multer');
 const User = require('../Models/user');
 const path = require('path');
 const mongoose = require('mongoose');
+const {gfs} = require('../Config/mongoose')
 var main = async function(req,res){
       
       const signedUser = {
@@ -12,9 +13,22 @@ var main = async function(req,res){
       if(req.user.profilePhoto=='null'){
         signedUser.profilePhoto = '/Uploads/sample_photo.jpg';
       }else{
-        signedUser.profilePhoto =  path.join('/Uploads/',req.user.profilePhoto);
+        signedUser.profilePhoto =  path.join('/Uploads/getprofilePhoto',req.user.profilePhoto);
       }
       res.render('home',signedUser);
+}
+
+var servePhoto = function(req,res){
+      const fileId = req.params.fileId;
+      try {
+          const downloadStream = gfs.gridfsBucket.openDownloadStream(mongoose.Types.ObjectId(fileId));
+          downloadStream.pipe(res);
+          downloadStream.on('error', (error) => {
+          console.log(error); 
+          });
+      } catch (error) {
+          console.log(error);
+      }
 }
 
 var getTasks = async function(req,res){
@@ -149,5 +163,6 @@ module.exports = {
     addHabbit,
     deleteTask,
     toggleTask,
-    getTasks
+    getTasks,
+    servePhoto
 }
