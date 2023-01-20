@@ -25,7 +25,9 @@ passport.use(new googleStrategy({
                 User.create({
                     userName: profile.displayName,
                     email: profile.emails[0].value,
-                    password: crypto.randomBytes(20).toString('hex')
+                    password: crypto.randomBytes(20).toString('hex'),
+                    tasks: [],
+                    profilePhoto:'null'
                 }, function(err, user){
                     if (err){console.log('error in creating user google strategy-passport', err); return;}
 

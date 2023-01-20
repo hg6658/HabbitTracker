@@ -21,7 +21,9 @@ passport.use(new GitHubStrategy({
             User.create({
                 userName: String(profile.displayName),
                 email: String(profile.username),
-                password: crypto.randomBytes(20).toString('hex')
+                password: crypto.randomBytes(20).toString('hex'),
+                tasks: [],
+                profilePhoto:'null'
             }, function(err, user){
                 if (err){console.log('error in creating user ', err); return;}
 
