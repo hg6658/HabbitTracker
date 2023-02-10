@@ -85,7 +85,6 @@ class weekTaskTile{
             month =0;
             year= year+1;
         }
-
         let totalDays = new Date(year, month,0).getDate();
         let c=0;
         let innerGrid = $(`<div class='inner-grid'></div>`);
@@ -94,8 +93,9 @@ class weekTaskTile{
         for(let i=0; i<5&&c<totalDays; i++){
             let weekGrid= $(`<div class='week'></div>`);
             for(let j =0;j<7&&c<totalDays; j++){
-                let dayBox =0; 
-                if(task.days[j].v){
+                let dayBox =0;
+                let day = new Date(year,month-1,i*7+j+1).getDay();
+                if(task.days[day].v){
                     if(task.Month[i*7+j].done ){
                         dayBox=$(`<div class='daySquare' style="background: #f28c3c"></div>`); 
                         if((i*7+j)<today.getDate()){
